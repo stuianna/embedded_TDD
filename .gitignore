@@ -1,0 +1,7 @@
+bin/
+obj/
+tests/bin
+compile_commands.json
+tests/compile_commands.json
+tags
+
