@@ -1,24 +1,21 @@
-OBJDIR=obj
 BINDIR=bin
 BIN=tests
 
-INCDIRS += trompeloeil
-INCDIRS += doctest
+# Required includes
+INCDIRS += trompeloeil doctest mocks
 SRC += doctest/doctest.cpp
 
-INCDIRS += mocks 
-INCDIRS += ../src
+# Add extra include files, these have last search path, so mocks will overwrite them.
+INCDIRS += 
 
-SRC += tests/string/test_string.cpp
-SRC += ../src/utilities/string.cpp
+# Add extra source files
+SRC+=tests/exampleTests.cpp
 
 CXX = g++
 
 CXXFLAGS= -Wall -Wextra -std=c++14 -Os -g
 
-OBJ = $(addsuffix .o ,$(basename $(patsubst %,$(OBJDIR)/%,$(SRC))))
 INC = $(addprefix -I , $(INCDIRS))
-INCF = $(addprefix -include , $(INCFILES))
 
 all: $(BINDIR)/$(BIN) runTests
 
@@ -26,11 +23,10 @@ runTests:
 	@./$(BINDIR)/$(BIN)
 
 clean:
-	@rm -rf $(OBJDIR)
 	@rm -rf	$(BINDIR)
 
 $(BINDIR)/$(BIN): $(SRC)
 	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) $(INCF) $(INC) $(SRC) -o $@ 
+	@$(CXX) $(CXXFLAGS) $(INC) $(SRC) -o $@ 
 
 print-%  : ; @echo $* = $($*)
