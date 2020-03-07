@@ -12,6 +12,11 @@ INCDIRS += ../src
 SRC += tests/string/test_string.cpp
 SRC += ../src/utilities/string.cpp
 
+SRC += tests/led/test_led.cpp
+SRC += ../src/utilities/led.cpp
+SRC += mocks/peripherals/mock_gpioOutput.cpp
+#SRC += ../src/utilities/string.cpp
+
 CXX = g++
 
 CXXFLAGS= -Wall -Wextra -std=c++14 -Os -g
