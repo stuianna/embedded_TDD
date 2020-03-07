@@ -1,4 +1,3 @@
-#include <stm32f7xx.h>
 #include <peripherals/usart.hpp>
 #include <utilities/string.hpp>
 
